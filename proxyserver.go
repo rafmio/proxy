@@ -7,6 +7,14 @@ import (
 )
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
+	redirReq, err := http.DefaultClient.Do(r)
+	if err != nil {
+		log.Println("Error processing request:", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		_, _ = w.Write([]byte("An internal server error occurred"))
+		return
+	}
+	defer redirReq.Body.Close()
 
 }
 
