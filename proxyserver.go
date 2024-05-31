@@ -16,6 +16,9 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	defer redirReq.Body.Close()
 
+	w.Header().Set("Status", "Ok")
+	w.Header().Set("Done", "True")
+	// w.Write(redirReq.Body)
 }
 
 func main() {
