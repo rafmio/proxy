@@ -8,6 +8,15 @@ import (
 )
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Received request:")
+	fmt.Println("Method:", r.Method)
+	fmt.Printf("URL: %v\n", r.URL)
+	fmt.Printf("Proto:", r.Proto)
+	for head, val := range r.Header {
+		fmt.Println(head, ":", val)
+	}
+	fmt.Println("Host:", r.Host)
+
 	redirReq, err := http.DefaultClient.Do(r)
 	if err != nil {
 		log.Println("Error processing request:", err)
