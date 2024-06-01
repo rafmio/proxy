@@ -5,7 +5,6 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"os"
 )
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
@@ -32,12 +31,6 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	if len(os.Args) < 1 {
-		fmt.Println("Usage: go run main.go <url>")
-		return
-	}
-	url := os.Args[1]
-
 	http.HandleFunc("/", handleRequest)
 	fmt.Println("Listening...")
 	log.Fatal("error listening and serve:", http.ListenAndServe(":8080", nil))
