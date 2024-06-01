@@ -11,7 +11,7 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received request:")
 	fmt.Println("Method:", r.Method)
 	fmt.Printf("URL: %v\n", r.URL)
-	fmt.Printf("Proto:", r.Proto)
+	fmt.Println("Proto:", r.Proto)
 	for head, val := range r.Header {
 		fmt.Println(head, ":", val)
 	}
