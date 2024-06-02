@@ -8,7 +8,8 @@ import (
 )
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Received request:")
+
+	fmt.Println("=======Received request:=======")
 	fmt.Println("Method:", r.Method)
 	fmt.Printf("URL: %v\n", r.URL)
 	fmt.Println("Proto:", r.Proto)
@@ -16,6 +17,7 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(head, ":", val)
 	}
 	fmt.Println("Host:", r.Host)
+	fmt.Println("========================================")
 
 	redirReq, err := http.DefaultClient.Do(r)
 	if err != nil {
