@@ -19,7 +19,23 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Host:", r.Host)
 	fmt.Println("========================================")
 
-	redirReq, err := http.DefaultClient.Do(r)
+	// создаем новый запрос, используя информацию из исходного запроса
+	newReq, err := http.NewRequest(r.Method, r.URL.String(), nil)
+	if err != nil {
+		log.Println("Error processing request:", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		_, _ = w.Write([]byte("Error creating new request"))
+		return
+	}
+
+	// копируем заголовки из исходного запроса
+	for key, values := range r.Header {
+		for _, value := range values {
+			newReq.Header.Add(key, value)
+		}
+	}
+
+	redirReq, err := http.DefaultClient.Do(newReq)
 	if err != nil {
 		log.Println("Error processing request:", err)
 		w.WriteHeader(http.StatusInternalServerError)
