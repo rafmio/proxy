@@ -17,7 +17,7 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(head, ":", val)
 	}
 	fmt.Println("Host:", r.Host)
-	fmt.Println("========================================")
+	fmt.Println("===============================")
 
 	// создаем новый запрос, используя информацию из исходного запроса
 	newReq, err := http.NewRequest(r.Method, r.URL.String(), nil)
